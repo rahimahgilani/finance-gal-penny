@@ -1,7 +1,11 @@
 import json
 import os
 from groq import Groq
+from dotenv import load_dotenv
 from prompts import SYSTEM_PROMPT
+
+load_dotenv()
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def analyse_expenses(expenses_text):
     # user --> the text they enter 
