@@ -24,7 +24,8 @@ No spreadsheets. No sign-ups. Just paste your expenses and get an instant breakd
 
 ---
 ## `> Deployed Website`
-[Link Text](https://finance-gal-penny-production.up.railway.app/)
+Deployed using docker and railway.
+[Penny - Your FInance Coach](https://finance-gal-penny-production.up.railway.app/)
 
 ## `> install`
 
