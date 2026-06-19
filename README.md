@@ -23,6 +23,8 @@ No spreadsheets. No sign-ups. Just paste your expenses and get an instant breakd
 | **status** | `active` |
 
 ---
+## `> Deployed Website`
+[Link Text](https://finance-gal-penny-production.up.railway.app/)
 
 ## `> install`
 
