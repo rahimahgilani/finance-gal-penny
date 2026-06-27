@@ -61,12 +61,14 @@ st.html("""
 </div>
 """)
 
-## Create a text area for users to input their expenses
-expenses = st.text_area(
-    label="Ask Penny",
-    placeholder="e.g.\nRent 25000\nGroceries 8000",
-    height=200
-)
+with st.form(key="expenses-chat-window"):
+    user_text = st.text_area("e.g.\nRent 25000\nGroceries 8000")
+    
+    submit_button = st.form_submit_button(label="Process Text")
+
+    st.file_uploader("Upload PDF or DOCX", type=["pdf", "docx"], accept_multiple_files=False, key="upload-doc")
+
+    st.file_uploader("Upload Image", type="image", accept_multiple_files=False, key="upload-img")
 
 ## When the user clicks the "Analyse" button, call the analyse_expenses function and display the results
 if st.button("Analyse my expenses"):
