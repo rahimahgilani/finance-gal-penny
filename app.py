@@ -61,15 +61,20 @@ st.html("""
 </div>
 """)
 
+temp_dir = 'multimodal-rag-pipeline\content'
+
 with st.form(key="expenses-chat-window"):
     user_text = st.text_area("e.g.\nRent 25000\nGroceries 8000")
     
     submit_button = st.form_submit_button(label="Process Text")
 
-    st.file_uploader("Upload PDF or DOCX", type=["pdf", "docx"], accept_multiple_files=False, key="upload-doc")
-
-    st.file_uploader("Upload Image", type="image", accept_multiple_files=False, key="upload-img")
-
+    uploaded_file = st.file_uploader("Upload PDF or DOCX", type=["pdf", "csv", "docx", "image"], accept_multiple_files=False, key="upload-doc")
+   
+    file_path = os.path.join(temp_dir, uploaded_file.name)
+    
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+        
 ## When the user clicks the "Analyse" button, call the analyse_expenses function and display the results
 if st.button("Analyse my expenses"):
     if not expenses.strip():
