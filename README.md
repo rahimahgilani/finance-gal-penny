@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- HEADER SVG — replace YOUR_PROJECT with your tool name -->
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0,0,0,255&height=120&section=header&text=%5B%20PENNY%20-%20YOUR%20FINANCE%20SIS%20%5D&fontSize=42&fontColor=4deeea&fontAlignY=55&desc=a%20tool%20for%20the%20broke%20gals&descAlignY=80&descSize=14&descColor=4deeea" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0,0,0,255&height=120&section=header&text=%5B%20PENNY%20-%20YOUR%20FINANCE%20SIS%20%5D&fontSize=42&fontColor=4deeea&fontAlignY=55&descAlignY=80&descSize=14&descColor=4deeea" width="100%"/>
 
 <!-- Typing SVG tagline -->
 <img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=16&pause=1000&color=4deeea&center=true&vCenter=true&width=600&lines=initializing+PENNY...;access+granted.;ready+to+deploy." alt="Typing SVG"/>
