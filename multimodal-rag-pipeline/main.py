@@ -1,6 +1,7 @@
 import os
 import boto3
 from dotenv import load_dotenv
+from botocore.exceptions import ClientError
 
 # Loading env variables 
 load_dotenv()
@@ -21,6 +22,7 @@ client = boto3.client(
 # Printing bucket contents 
 def print_bucket():
     response = client.list_buckets()
+    return response
 
 # Downloading a file
 def download(bucket_name, object_name, file_name):
