@@ -1,5 +1,6 @@
 import pymupdf
 import pdfplumber
+import pandas as pd 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 TABLE_SETTINGS = {
@@ -11,7 +12,7 @@ TABLE_SETTINGS = {
     "edge_min_length": 3,
     "min_words_vertical": 2,
     "min_words_horizontal": 1,
-    "keep_blank_chars": True,
+    "text_keep_blank_chars": True,
 }
 
 def pdf_chunking(filename):
@@ -46,15 +47,18 @@ def pdf_chunking(filename):
     return chunks
 
 def extract_all_tables(pdf_path):
-    extracted = []
+    extracted_tables = []
 
     with pdfplumber.open(pdf_path) as pdf:
-        for page_num, page in enumerate(pdf.pages, start=1):
-            tables = page.extract_tables(TABLE_SETTINGS)
+        for page in pdf.pages:
+            tables_on_page = page.extract_tables(TABLE_SETTINGS)
 
-            for t in tables:
-                df = pd.DataFrame(t)
-                df = df.dropna(axis=0, how="all").dropna(axis=1, how="all")
-                extracted.append((page_num, df))
-
-    return extracted
+            if tables_on_page:
+                for table in tables_on_page:
+                    if table:
+                        extracted_tables.append({
+                            'page': pdf.pages.index(page) + 1,
+                            'data': table
+                        })
+    
+    return extracted_tables
