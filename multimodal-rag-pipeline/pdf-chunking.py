@@ -15,9 +15,9 @@ TABLE_SETTINGS = {
     "text_keep_blank_chars": True,
 }
 
-def pdf_chunking(filename):
+def pdf_chunking(pdf_path):
     # Step 1: Open a document
-    doc = pymupdf.open(filename)
+    doc = pymupdf.open(pdf_path)
 
     if doc:
         print(f"Document opened successfully: {doc}")
@@ -52,13 +52,36 @@ def extract_all_tables(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
             tables_on_page = page.extract_tables(TABLE_SETTINGS)
-
+                                
             if tables_on_page:
                 for table in tables_on_page:
                     if table:
                         extracted_tables.append({
                             'page': pdf.pages.index(page) + 1,
-                            'data': table
+                            'chunk_type': table
                         })
-    
+
     return extracted_tables
+
+def extract_all_images(pdf_path):
+    doc = pymupdf.open(pdf_path)
+    
+    for page_index in range(len(doc)): # iterate over pdf pages
+        page = doc[page_index] # get the page
+        image_list = page.get_images()
+
+        # print the number of images found on the page
+        if image_list:
+            print(f"Found {len(image_list)} images on page {page_index}")
+        else:
+            print("No images found on page", page_index)
+
+        for image_index, img in enumerate(image_list, start=1): # enumerate the image list
+            xref = img[0] # get the XREF of the image
+            pix = pymupdf.Pixmap(doc, xref) # create a Pixmap
+
+            if pix.n - pix.alpha > 3: # CMYK: convert to RGB first
+                pix = pymupdf.Pixmap(pymupdf.csRGB, pix)
+
+            pix.save(f"page_{page_index}-image_{image_index}.png") # save the image as png
+            pix = None
