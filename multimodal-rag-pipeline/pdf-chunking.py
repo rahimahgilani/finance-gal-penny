@@ -1,6 +1,6 @@
 import pymupdf
+import pandas as pd
 import pdfplumber
-import pandas as pd 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 TABLE_SETTINGS = {
@@ -46,6 +46,14 @@ def pdf_chunking(pdf_path):
     # print(chunks[0]) # print the first chunk
     return chunks
 
+def table_to_markdown(table_df):
+    # Convert DataFrame to Markdown
+    markdown_table = table_df.to_markdown(index=False)
+
+    # Save the Markdown table locally
+    with open("table-output.md", "w", encoding="utf-8") as file:
+        file.write(markdown_table)
+
 def extract_all_tables(pdf_path):
     extracted_tables = []
 
@@ -56,9 +64,11 @@ def extract_all_tables(pdf_path):
             if tables_on_page:
                 for table in tables_on_page:
                     if table:
+                        table_df = pd.DataFrame(table)
                         extracted_tables.append({
                             'page': pdf.pages.index(page) + 1,
-                            'chunk_type': table
+                            'chunk_type': table,
+                            'content_text': table_to_markdown(table_df)
                         })
 
     return extracted_tables
@@ -83,5 +93,6 @@ def extract_all_images(pdf_path):
             if pix.n - pix.alpha > 3: # CMYK: convert to RGB first
                 pix = pymupdf.Pixmap(pymupdf.csRGB, pix)
 
-            pix.save(f"page_{page_index}-image_{image_index}.png") # save the image as png
+            pix.save(f"page_{page_index}_image_{image_index}.png") # save the image as png
             pix = None
+
