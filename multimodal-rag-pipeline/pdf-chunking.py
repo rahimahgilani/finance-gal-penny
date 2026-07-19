@@ -96,3 +96,4 @@ def extract_all_images(pdf_path):
             pix.save(f"page_{page_index}_image_{image_index}.png") # save the image as png
             pix = None
 
+extract_all_images("test_financial_report.pdf")
