@@ -15,7 +15,7 @@ TABLE_SETTINGS = {
     "text_keep_blank_chars": True,
 }
 
-def pdf_chunking(pdf_path):
+def extract_all_text(pdf_path):
     # Step 1: Open a document
     doc = pymupdf.open(pdf_path)
 
@@ -95,5 +95,3 @@ def extract_all_images(pdf_path):
 
             pix.save(f"page_{page_index}_image_{image_index}.png") # save the image as png
             pix = None
-
-extract_all_images("test_financial_report.pdf")

@@ -29,7 +29,7 @@ def download(bucket_name, object_name, file_name):
     client.download_file(bucket_name, object_name, file_name)
 
 # Uploading a file
-def upload_file(file_name, bucket, object_name=None):
+def upload_file(file_name, bucket=bucket_name, object_name=None):
     # If S3 object_name was not specified, use file_name
     if object_name is None:
         object_name = os.path.basename(file_name)

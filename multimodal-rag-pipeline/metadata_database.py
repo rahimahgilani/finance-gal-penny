@@ -1,5 +1,6 @@
-import psycopg2
+import os, psycopg2
 from datetime import date
+from dotenv import load_dotenv
 
 load_dotenv()
 db_url = os.getenv("DATABASE_URL")
@@ -60,3 +61,29 @@ cursor.execute(
     insert_chunk,
     (document_id, chunk_type, content_text, page_number, image_s3_path, faiss_index_id)
 )
+
+def update_s3_path(document_id, s3_path):
+    sql = """
+    UPDATE documents
+    SET s3_path = %s
+    WHERE id = %s;
+    """
+
+    cursor.execute(
+        update_s3_path,
+        (document_id, s3_path)
+    )
+    connection.commit()
+
+def update_status(document_id, status):
+    sql = """
+    UPDATE documents
+    SET status = %s
+    WHERE id = %s;
+    """
+
+    cursor.execute(
+        update_status,
+        (document_id, s3_path)
+    )
+    connection.commit()
