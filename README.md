@@ -8,6 +8,8 @@
 
 <br/>
 
+<h2> APP DEVELOPMENT IN PROGRESS </h2>
+
 </div>
 
 ## `> about`
@@ -21,11 +23,6 @@ No spreadsheets. No sign-ups. Just paste your expenses and get an instant breakd
 | **language** | Python 3.10+ |
 | **platform** | Linux · macOS · Windows |
 | **status** | `active` |
-
----
-## `> Deployed Website`
-Deployed using docker and railway.
-[Penny - Your FInance Coach](https://finance-gal-penny-production.up.railway.app/)
 
 ## `> install`
 
