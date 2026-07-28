@@ -1,0 +1,132 @@
+FinCorp Inc. — Annual Financial Report 2024
+This report summarises the financial performance of FinCorp Inc. for the fiscal year ending 31 December
+2024. The company operates across three primary business segments: enterprise software licensing,
+professional services, and cloud infrastructure. Total revenue grew by 47% year-over-year, driven primarily by
+strong demand in the cloud infrastructure segment and successful expansion into Southeast Asian markets.
+Net profit margin improved from 18% in FY 2023 to 23% in FY 2024, reflecting disciplined cost management
+and improved operational efficiency across all business units. The board has approved a dividend of $0.45
+per share for Q4 2024, to be distributed on 15 February 2025.
+Key risks identified for FY 2025 include macroeconomic uncertainty in emerging markets, increased
+competition in the cloud infrastructure space, and potential regulatory changes affecting data residency
+requirements in the European Union.
+Quarterly Profit and Loss Summary
+Quarter
+Revenue ($M)
+Expenses ($M)
+Net Profit ($M)
+Margin (%)
+Q1 2024
+1.20
+0.90
+0.30
+25.0%
+Q2 2024
+1.80
+1.20
+0.60
+33.3%
+Q3 2024
+2.40
+1.60
+0.80
+33.3%
+Q4 2024
+3.10
+2.00
+1.10
+35.5%
+FY 2024
+8.50
+5.70
+2.80
+32.9%
+Revenue vs Expenses — Visual Overview
+Figure 1: Quarterly revenue consistently outpaced expenses throughout FY 2024, with the gap widening in H2
+as cloud infrastructure contracts ramped up.
+Segment Performance Breakdown
+FinCorp operates three reportable segments. Enterprise Software Licensing contributed 38% of total revenue,
+with annual recurring revenue (ARR) reaching $3.2M, up from $2.1M in FY 2023. The Professional Services
+segment delivered $1.9M in revenue, constrained by talent availability in the second half of the year. Cloud
+Infrastructure was the standout performer, growing 112% to $3.4M as three large enterprise clients migrated
+workloads to FinCorp-managed cloud environments.
+Revenue by Business Segment
+Segment
+FY 2023 ($M)
+FY 2024 ($M)
+YoY Growth
+% of Total
+Enterprise Software
+2.10
+3.20
++52.4%
+37.6%
+Professional Services
+1.60
+1.90
++18.8%
+22.4%
+Cloud Infrastructure
+1.60
+3.40
++112.5%
+40.0%
+Total
+5.30
+8.50
++60.4%
+100.0%
+Expense Breakdown — FY 2024
+Figure 2: Salaries remain the largest cost centre at 45% of total expenses. Infrastructure costs grew in
+absolute terms but held steady as a proportion of revenue, reflecting economies of scale in the cloud
+segment.
+Top Operating Expenses — FY 2024
+Expense Category
+Q1 ($M)
+Q2 ($M)
+Q3 ($M)
+Q4 ($M)
+Total ($M)
+Salaries & Benefits
+0.41
+0.54
+0.72
+0.90
+2.57
+Infrastructure
+0.18
+0.24
+0.32
+0.40
+1.14
+Sales & Marketing
+0.14
+0.18
+0.24
+0.30
+0.86
+R&D
+0.11
+0.14
+0.18
+0.23
+0.66
+Other / Admin
+0.06
+0.10
+0.14
+0.17
+0.47
+Total
+0.90
+1.20
+1.60
+2.00
+5.70
+Outlook and Forward Guidance
+Management projects total revenue of $12.5M to $13.5M for FY 2025, representing growth of 47% to 59%
+over FY 2024. This guidance assumes stable macroeconomic conditions and successful closure of three
+large enterprise pipeline deals currently in late-stage negotiation. Capital expenditure is expected to increase
+to $1.8M as the company expands its cloud infrastructure capacity to support anticipated demand.
+The board remains committed to maintaining a minimum cash reserve of $2.0M and will evaluate additional
+dividend distributions on a quarterly basis, subject to operating cash flow performance.
+

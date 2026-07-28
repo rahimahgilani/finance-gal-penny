@@ -1,3 +1,4 @@
+import io
 import os
 import boto3
 from dotenv import load_dotenv
@@ -41,3 +42,16 @@ def upload_file(file_name, bucket=bucket_name, object_name=None):
         logging.error(e)
         return False
     return True
+
+# Uploading an image
+def upload_bytes(image_bytes, s3_key):
+    try:
+        client.upload_fileobj(
+            io.BytesIO(image_bytes),
+            bucket_name,
+            s3_key
+        )
+        return True
+    except ClientError as e:
+        print(f"Image upload failed: {e}")
+        return False

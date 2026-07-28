@@ -1,6 +1,7 @@
+from datetime import date
 from pdf_chunking import *
+from s3_aws import upload_bytes, upload_file
 from metadata_database import *
-from s3_aws import upload_file
 
 def ingest_pdf(pdf_path, user_id):
     filename = os.path.basename(pdf_path)
@@ -11,6 +12,7 @@ def ingest_pdf(pdf_path, user_id):
         filename=filename,
         file_type='pdf',
         s3_path='pending',   
+        upload_date=date.today(),
         status='processing'
     )
 
@@ -30,17 +32,17 @@ def ingest_pdf(pdf_path, user_id):
 
     # Step 6: Insert each chunk type (you'll build these next)
     for chunk in text_chunks:
-        insert_chunk(document_id, 'text', chunk['text'], chunk['page'])
+        insert_chunk(document_id, 'text', chunk['context_text'], chunk['page'],  image_s3_path=None, faiss_index_id=None)
 
     for chunk in table_chunks:
-        insert_chunk(document_id, 'table', chunk['content_text'], chunk['page'])
+        insert_chunk(document_id, 'table', chunk['context_text'], chunk['page'], image_s3_path=None, faiss_index_id=None)
 
     for chunk in image_chunks:
         s3_image_key = f"{user_id}/{document_id}/images/page_{chunk['page']}_img_{chunk['index']}.png"
-        upload_image_to_s3(chunk['image_bytes'], s3_image_key)
-        insert_chunk(document_id, 'image', None, chunk['page'], image_s3_path=s3_image_key)
+        upload_bytes(chunk['image_bytes'], s3_image_key)
+        insert_chunk(document_id, 'image', None, chunk['page'], image_s3_path=s3_image_key, faiss_index_id=None)
 
     # Step 7: Mark document as complete
     update_status(document_id, 'complete')
+    print("Document Chunking and Uploading Complete!")
 
-ingest_doc('./test_financial_report.pdf')
