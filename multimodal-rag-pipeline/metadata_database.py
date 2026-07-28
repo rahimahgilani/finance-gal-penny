@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS documents (
 """
 cursor.execute(create_documents)
 
+connection.commit()
+
 # Create chunks table
 create_chunks = """
 CREATE TABLE IF NOT EXISTS chunks (
@@ -41,29 +43,38 @@ cursor.execute(create_chunks)
 connection.commit()
 
 # SQL INSERT statement
-insert_document = """
-INSERT INTO documents (user_id, filename, file_type, s3_path, upload_date, status)
-VALUES (%s, %s, %s, %s, %s, %s);
-"""
+def insert_document(user_id, filename, file_type, s3_path, upload_date, status):
+    insert_document = """
+    INSERT INTO documents (user_id, filename, file_type, s3_path, upload_date, status)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    RETURNING id;
+    """
 
-cursor.execute(
-    insert_document,
-    (user_id, filename, file_type, s3_path, date.today())
-)
+    cursor.execute(
+        insert_document,
+        (user_id, filename, file_type, s3_path, date.today(), status)
+    )
+
+    connection.commit()
+
+    return cursor.fetchone()[0]
 
 # SQL INSERT statement
-insert_chunk = """
-INSERT INTO chunks (document_id, chunk_type, content_text, page_number, image_s3_path, faiss_index_id)
-VALUES (%s, %s, %s, %s, %s, %s);
-"""
+def insert_chunk(document_id, chunk_type, content_text, page_number, image_s3_path, faiss_index_id):
+    insert_chunk = """
+    INSERT INTO chunks (document_id, chunk_type, content_text, page_number, image_s3_path, faiss_index_id)
+    VALUES (%s, %s, %s, %s, %s, %s);
+    """
 
-cursor.execute(
-    insert_chunk,
-    (document_id, chunk_type, content_text, page_number, image_s3_path, faiss_index_id)
-)
+    cursor.execute(
+        insert_chunk,
+        (document_id, chunk_type, content_text, page_number, image_s3_path, faiss_index_id)
+    )
+
+    connection.commit()
 
 def update_s3_path(document_id, s3_path):
-    sql = """
+    update_s3_path = """
     UPDATE documents
     SET s3_path = %s
     WHERE id = %s;
@@ -71,19 +82,21 @@ def update_s3_path(document_id, s3_path):
 
     cursor.execute(
         update_s3_path,
-        (document_id, s3_path)
+        (s3_path, document_id)
     )
+    
     connection.commit()
 
 def update_status(document_id, status):
-    sql = """
+    update_status = """
     UPDATE documents
     SET status = %s
     WHERE id = %s;
     """
 
     cursor.execute(
-        update_status,
-        (document_id, s3_path)
+        update_status, 
+        (status, document_id)
     )
+
     connection.commit()
